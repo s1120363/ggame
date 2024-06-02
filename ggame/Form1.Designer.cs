@@ -3,8 +3,8 @@
     partial class Form1
     {
         private System.ComponentModel.IContainer components = null;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
+        private Panel panel1;
+        private Label label1;
 
         protected override void Dispose(bool disposing)
         {
@@ -17,37 +17,57 @@
 
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            panel1 = new Panel();
+            label1 = new Label();
+            pictureBoxTurnIndicator = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxTurnIndicator).BeginInit();
+            SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(12, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(640, 640);
-            this.panel1.TabIndex = 0;
+            panel1.Location = new Point(14, 14);
+            panel1.Margin = new Padding(3, 4, 3, 4);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(720, 760);
+            panel1.TabIndex = 0;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 655);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 17);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
+            label1.AutoSize = true;
+            label1.Location = new Point(740, 179);
+            label1.Name = "label1";
+            label1.Size = new Size(51, 19);
+            label1.TabIndex = 1;
+            label1.Text = "label1";
+            // 
+            // pictureBoxTurnIndicator
+            // 
+            pictureBoxTurnIndicator.Image = (Image)resources.GetObject("pictureBoxTurnIndicator.Image");
+            pictureBoxTurnIndicator.Location = new Point(730, 26);
+            pictureBoxTurnIndicator.Name = "pictureBoxTurnIndicator";
+            pictureBoxTurnIndicator.Size = new Size(150, 150);
+            pictureBoxTurnIndicator.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxTurnIndicator.TabIndex = 2;
+            pictureBoxTurnIndicator.TabStop = false;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(664, 681);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.panel1);
-            this.Name = "Form1";
-            this.Text = "Reversi";
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(9F, 19F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(938, 700);
+            Controls.Add(label1);
+            Controls.Add(panel1);
+            Controls.Add(pictureBoxTurnIndicator);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "Form1";
+            Text = "Reversi";
+            ((System.ComponentModel.ISupportInitialize)pictureBoxTurnIndicator).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
+
+        private PictureBox pictureBoxTurnIndicator;
+
     }
 }

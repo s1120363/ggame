@@ -29,7 +29,7 @@ namespace ggame
             board[4, 3] = 1;
         }
 
-        private void Panel1_Paint(object sender, PaintEventArgs e)
+        private void Panel1_Paint(object sender, PaintEventArgs e)  //提示點
         {
             DrawBoard(e.Graphics);
 
@@ -48,6 +48,16 @@ namespace ggame
         private void DrawBoard(Graphics g)
         {
             Pen pen = new Pen(Color.Black);
+            Brush backgroundBrush = new SolidBrush(Color.LightGreen);
+
+            // Draw grid background
+            for (int y = 0; y < GridSize; y++)
+            {
+                for (int x = 0; x < GridSize; x++)
+                {
+                    g.FillRectangle(backgroundBrush, x * CellSize, y * CellSize, CellSize, CellSize);
+                }
+            }
 
             // Draw grid lines
             for (int i = 0; i <= GridSize; i++)
@@ -91,7 +101,31 @@ namespace ggame
 
                     if (!HasValidMove(1) && !HasValidMove(2))
                     {
-                        MessageBox.Show("Game Over!\n" + GetScores());
+                        int blackCount = 0;
+                        int whiteCount = 0;
+                        for (int i = 0; i < GridSize; i++)
+                        {
+                            for (int j = 0; j < GridSize; j++)
+                            {
+                                if (board[i, j] == 1)
+                                    blackCount++;
+                                else if (board[i, j] == 2)
+                                    whiteCount++;
+                            }
+                        }
+
+                        if (blackCount > whiteCount)
+                        {
+                            MessageBox.Show("遊戲結束!\n黑棋獲勝!!!");
+                        }
+                        else if (whiteCount > blackCount)
+                        {
+                            MessageBox.Show("遊戲結束!\n白棋獲勝!!!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("遊戲結束!\n平局!!!");
+                        }
                     }
                     else if (!HasValidMove(isBlackTurn ? 1 : 2))
                     {
@@ -102,6 +136,7 @@ namespace ggame
                 }
             }
         }
+
 
         private bool IsValidMove(int x, int y, int player)
         {
@@ -212,6 +247,15 @@ namespace ggame
         {
             string currentPlayer = isBlackTurn ? "Black" : "White";
             label1.Text = $"Turn: {currentPlayer}\n{GetScores()}";
+
+            if (isBlackTurn)
+            {
+                pictureBoxTurnIndicator.Image = Properties.Resources.black_turn_image; // 替換為黑色玩家回合的圖片
+            }
+            else
+            {
+                pictureBoxTurnIndicator.Image = Properties.Resources.white_turn_image; // 替換為白色玩家回合的圖片
+            }
         }
 
         private List<Point> GetValidMoves(int player)
@@ -228,7 +272,6 @@ namespace ggame
                     }
                 }
             }
-
             return validMoves;
         }
     }
